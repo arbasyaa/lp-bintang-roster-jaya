@@ -1,11 +1,18 @@
 @import "tailwindcss";
-@config "../../tailwind.config.mjs";
 
-/* ── Tipografi ─────────────────────────────────────────────────────────── */
+/* ── Design Tokens (Tailwind v4 CSS-first) ──────────────────────────────── */
 @theme {
+  /* Tipografi */
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
     Arial, sans-serif;
   --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+
+  /* Palet Warna Kustom */
+  --color-bone: #F5F5F0;
+  --color-cement: #A9A9A9;
+  --color-charcoal: #2C2C2C;
+  --color-dark: #1A1A1A;
+  --color-emerald-cta: #047857;
 }
 
 /* ── Smooth Scroll ─────────────────────────────────────────────────────── */

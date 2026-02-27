@@ -1,11 +1,12 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind'; // Gunakan integrasi standar Astro
+import tailwindcss from '@tailwindcss/vite';
 
+// https://astro.build/config
 export default defineConfig({
-  site: 'https://arbasyaa.github.io',
-  base: '/lp-bintang-roster-jaya',
-  integrations: [tailwind()], // Daftarkan tailwind di sini
+  vite: {
+    plugins: [tailwindcss()],
+  },
   image: {
     domains: ['images.unsplash.com'],
   },
