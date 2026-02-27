@@ -1,0 +1,90 @@
+@import "tailwindcss";
+@config "../../tailwind.config.mjs";
+
+/* ── Tipografi ─────────────────────────────────────────────────────────── */
+@theme {
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+/* ── Smooth Scroll ─────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* ── Fade-up Reveal Animation ──────────────────────────────────────────── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(44px);
+  transition:
+    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fade-up.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays */
+.fade-delay-1 { transition-delay: 0.08s; }
+.fade-delay-2 { transition-delay: 0.16s; }
+.fade-delay-3 { transition-delay: 0.24s; }
+.fade-delay-4 { transition-delay: 0.32s; }
+.fade-delay-5 { transition-delay: 0.40s; }
+.fade-delay-6 { transition-delay: 0.48s; }
+
+/* ── WhatsApp CTA Pulse ────────────────────────────────────────────────── */
+@keyframes cta-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(4, 120, 87, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 14px rgba(4, 120, 87, 0);
+  }
+}
+
+.cta-pulse {
+  animation: cta-pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ── Parallax Container ────────────────────────────────────────────────── */
+.parallax-wrap {
+  overflow: hidden;
+  position: relative;
+}
+
+.parallax-img {
+  will-change: transform;
+}
+
+/* ── Navbar Scrolled State ─────────────────────────────────────────────── */
+.nav-scrolled {
+  background-color: rgba(245, 245, 240, 0.92) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Mobile Menu ───────────────────────────────────────────────────────── */
+.mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-menu.open {
+  max-height: 320px;
+}
+
+/* ── Selection Color ───────────────────────────────────────────────────── */
+::selection {
+  background-color: #2C2C2C;
+  color: #F5F5F0;
+}

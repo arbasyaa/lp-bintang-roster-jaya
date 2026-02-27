@@ -1,0 +1,593 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+
+/* ── Nomor WhatsApp (ganti dengan nomor asli) ── */
+const waNumber = '628XXXXXXXXXX';
+const waMessage = encodeURIComponent(
+  'Halo, saya tertarik dengan produk Bata Roster Premium. Boleh konsultasi?',
+);
+const waLink = `https://wa.me/${waNumber}?text=${waMessage}`;
+
+/* ── Data Produk ── */
+const products = [
+  {
+    title: 'Roster Geometris Klasik',
+    desc: 'Pola geometris abadi yang memadukan garis tegas dan ruang negatif, sempurna untuk fasad kontemporer.',
+    img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    title: 'Roster Jalinan Modern',
+    desc: 'Desain jalinan elegan yang menciptakan permainan cahaya dan bayangan di dinding Anda.',
+    img: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    title: 'Roster Ventilasi Minimalis',
+    desc: 'Pola sederhana dengan bukaan optimal — sirkulasi udara maksimal tanpa mengorbankan privasi.',
+    img: 'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    title: 'Roster Bunga Tropis',
+    desc: 'Motif flora halus yang menghadirkan nuansa tropis elegan pada hunian modern Anda.',
+    img: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    title: 'Roster Garis Diagonal',
+    desc: 'Garis-garis diagonal tegas untuk kesan arsitektural yang bold dan penuh karakter.',
+    img: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    title: 'Roster Kotak Simetris',
+    desc: 'Kesederhanaan kotak simetris yang tak lekang oleh waktu — cocok untuk segala gaya arsitektur.',
+    img: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=600&q=80',
+  },
+];
+---
+
+<Layout title="Roster Prima — Bata Roster Premium untuk Arsitektur Modern">
+  <!-- ════════════════════════════════════════════════════════════════════
+       NAVBAR — Transparan, Sticky, Backdrop-blur
+       ════════════════════════════════════════════════════════════════════ -->
+  <nav
+    id="navbar"
+    class="fixed top-0 left-0 w-full z-50 transition-all duration-500"
+  >
+    <div
+      class="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-10 py-4"
+    >
+      <!-- Logo -->
+      <a href="#beranda" class="flex items-center gap-2 group">
+        <span
+          class="text-xl md:text-2xl font-serif font-bold tracking-widest text-charcoal"
+        >
+          BINTANG ROSTER <span class="text-cement">JAYA</span>
+        </span>
+      </a>
+
+      <!-- Desktop Menu -->
+      <ul class="hidden md:flex items-center gap-10 text-sm tracking-wide">
+        <li>
+          <a
+            href="#beranda"
+            class="text-charcoal/80 hover:text-charcoal transition-colors duration-300"
+            >Beranda</a
+          >
+        </li>
+        <li>
+          <a
+            href="#produk"
+            class="text-charcoal/80 hover:text-charcoal transition-colors duration-300"
+            >Produk</a
+          >
+        </li>
+        <li>
+          <a
+            href="#tentang"
+            class="text-charcoal/80 hover:text-charcoal transition-colors duration-300"
+            >Tentang Kami</a
+          >
+        </li>
+        <li>
+          <a
+            href="#kontak"
+            class="text-charcoal/80 hover:text-charcoal transition-colors duration-300"
+            >Kontak</a
+          >
+        </li>
+      </ul>
+
+      <!-- Mobile Hamburger -->
+      <button
+        id="menu-btn"
+        class="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5"
+        aria-label="Menu"
+      >
+        <span
+          class="block w-6 h-[2px] bg-charcoal transition-transform duration-300 origin-center"
+          id="bar1"></span>
+        <span
+          class="block w-6 h-[2px] bg-charcoal transition-opacity duration-300"
+          id="bar2"></span>
+        <span
+          class="block w-6 h-[2px] bg-charcoal transition-transform duration-300 origin-center"
+          id="bar3"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu md:hidden bg-bone/95 backdrop-blur-md">
+      <ul class="flex flex-col items-center gap-6 py-8 text-sm tracking-wide">
+        <li>
+          <a href="#beranda" class="text-charcoal/80 hover:text-charcoal">Beranda</a>
+        </li>
+        <li>
+          <a href="#produk" class="text-charcoal/80 hover:text-charcoal">Produk</a>
+        </li>
+        <li>
+          <a href="#tentang" class="text-charcoal/80 hover:text-charcoal">Tentang Kami</a>
+        </li>
+        <li>
+          <a href="#kontak" class="text-charcoal/80 hover:text-charcoal">Kontak</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       HERO SECTION — Split Layout
+       ════════════════════════════════════════════════════════════════════ -->
+  <section
+    id="beranda"
+    class="min-h-screen flex items-center pt-20 pb-16 md:pb-0"
+  >
+    <div
+      class="max-w-7xl mx-auto px-6 lg:px-10 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center w-full"
+    >
+      <!-- Kiri — Tipografi -->
+      <div class="order-2 md:order-1">
+        <p
+          class="fade-up text-xs md:text-sm tracking-[0.3em] uppercase text-cement mb-4 font-sans"
+        >
+          Koleksi Roster Premium
+        </p>
+        <h1
+          class="fade-up fade-delay-1 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold leading-[1.1] tracking-tight text-charcoal mb-6"
+        >
+          Sentuhan Elegan<br />
+          untuk Fasad<br />
+          <span class="text-cement">Impian Anda</span>
+        </h1>
+        <p
+          class="fade-up fade-delay-2 text-base md:text-lg text-charcoal/70 max-w-md leading-relaxed mb-10"
+        >
+          Bata roster premium dengan presisi tinggi, dirancang untuk
+          menyempurnakan estetika arsitektur modern sekaligus menghadirkan
+          ventilasi alami yang optimal bagi hunian Anda.
+        </p>
+        <a
+          href={waLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="fade-up fade-delay-3 inline-flex items-center gap-3 bg-emerald-cta text-white px-8 py-4 rounded-full text-sm font-semibold tracking-wide cta-pulse hover:bg-emerald-cta/90 transition-colors duration-300"
+        >
+          <!-- WhatsApp Icon -->
+          <svg
+            class="w-5 h-5 fill-current"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+            ></path>
+          </svg>
+          Konsultasi via WhatsApp
+        </a>
+      </div>
+
+      <!-- Kanan — Gambar Hero -->
+      <div class="order-1 md:order-2 fade-up fade-delay-2">
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5] md:aspect-[3/4]">
+          <Image
+            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
+            alt="Rumah modern dengan fasad bata roster premium"
+            width={800}
+            height={1000}
+            class="w-full h-full object-cover"
+            loading="eager"
+          />
+          <!-- Overlay gradient halus -->
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent"
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       PRODUCT PREVIEW ASIDE — Detail Tekstur Material
+       ════════════════════════════════════════════════════════════════════ -->
+  <section class="py-24 md:py-32 bg-white">
+    <div
+      class="max-w-7xl mx-auto px-6 lg:px-10 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center"
+    >
+      <!-- Gambar Tekstur -->
+      <div class="fade-up">
+        <div class="rounded-2xl overflow-hidden shadow-lg aspect-[4/3]">
+          <Image
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=700&q=80"
+            alt="Detail tekstur beton roster premium"
+            width={700}
+            height={525}
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <!-- Teks -->
+      <div>
+        <p
+          class="fade-up text-xs tracking-[0.3em] uppercase text-cement mb-3"
+        >
+          Material Unggulan
+        </p>
+        <h2
+          class="fade-up fade-delay-1 text-3xl md:text-4xl font-serif font-bold leading-tight text-charcoal mb-6"
+        >
+          Detail Tekstur<br />Autentik
+        </h2>
+        <p
+          class="fade-up fade-delay-2 text-charcoal/65 leading-relaxed mb-6"
+        >
+          Setiap unit roster kami diciptakan melalui proses pencetakan presisi
+          tinggi menggunakan campuran beton pilihan. Hasilnya — permukaan yang
+          kaya akan karakter, tahan terhadap cuaca ekstrem, dan semakin
+          memesona seiring waktu.
+        </p>
+        <p class="fade-up fade-delay-3 text-charcoal/65 leading-relaxed">
+          Kami percaya bahwa material bangunan bukan sekadar komponen
+          fungsional, melainkan elemen desain yang mampu mengubah karakter
+          sebuah ruang. Roster Prima menghadirkan keindahan dalam setiap
+          detailnya.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       PRODUCT GRID — Dig Down Parallax
+       ════════════════════════════════════════════════════════════════════ -->
+  <section id="produk" class="py-24 md:py-32 bg-bone">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <!-- Header -->
+      <div class="text-center mb-16 md:mb-20">
+        <p
+          class="fade-up text-xs tracking-[0.3em] uppercase text-cement mb-3"
+        >
+          Eksplorasi Koleksi
+        </p>
+        <h2
+          class="fade-up fade-delay-1 text-3xl md:text-5xl font-serif font-bold text-charcoal mb-4"
+        >
+          Koleksi Pola Roster
+        </h2>
+        <p
+          class="fade-up fade-delay-2 text-charcoal/60 max-w-lg mx-auto leading-relaxed"
+        >
+          Ragam desain yang dirancang untuk menyempurnakan karakter arsitektur
+          Anda — dari geometris klasik hingga motif kontemporer.
+        </p>
+      </div>
+
+      <!-- Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {
+          products.map((product, i) => (
+            <div
+              class={`fade-up fade-delay-${(i % 6) + 1} group`}
+            >
+              <div class="parallax-wrap rounded-2xl aspect-[4/5] mb-5 shadow-md group-hover:shadow-xl transition-shadow duration-500">
+                <Image
+                  src={product.img}
+                  alt={product.title}
+                  width={600}
+                  height={750}
+                  class="parallax-img w-full h-full object-cover rounded-2xl scale-110"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="text-lg font-serif font-semibold text-charcoal mb-1">
+                {product.title}
+              </h3>
+              <p class="text-sm text-charcoal/55 leading-relaxed">
+                {product.desc}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       ABOUT SECTION — Filosofi & Keandalan
+       ════════════════════════════════════════════════════════════════════ -->
+  <section id="tentang" class="py-24 md:py-36 bg-white">
+    <div class="max-w-3xl mx-auto px-6 lg:px-10 text-center">
+      <p class="fade-up text-xs tracking-[0.3em] uppercase text-cement mb-3">
+        Tentang Kami
+      </p>
+      <h2
+        class="fade-up fade-delay-1 text-3xl md:text-5xl font-serif font-bold text-charcoal mb-8 leading-tight"
+      >
+        Keandalan yang<br />Telah Teruji
+      </h2>
+      <div class="space-y-6 text-left md:text-center">
+        <p class="fade-up fade-delay-2 text-charcoal/65 leading-relaxed">
+          Roster Prima lahir dari komitmen mendalam terhadap kualitas material
+          bangunan Indonesia. Kami memahami bahwa setiap bata roster bukan
+          sekadar elemen dekoratif — ia adalah pernyataan arsitektural,
+          benteng ventilasi alami, dan investasi jangka panjang bagi
+          bangunan Anda.
+        </p>
+        <p class="fade-up fade-delay-3 text-charcoal/65 leading-relaxed">
+          Dengan lebih dari satu dekade pengalaman, setiap roster kami
+          diproduksi menggunakan campuran beton berkekuatan tinggi,
+          dicetak dengan cetakan presisi, dan melewati kontrol kualitas ketat.
+          Hasilnya: produk yang konsisten dimensinya, kuat strukturalnya,
+          dan indah estetikanya.
+        </p>
+        <p class="fade-up fade-delay-4 text-charcoal/65 leading-relaxed">
+          Kami melayani arsitek, kontraktor, dan pemilik rumah yang tidak
+          berkompromi terhadap kualitas. Karena kami percaya — bangunan
+          hebat dimulai dari material yang terpercaya.
+        </p>
+      </div>
+
+      <!-- Fitur Keandalan -->
+      <div
+        class="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center"
+      >
+        <div class="fade-up fade-delay-2">
+          <p class="text-4xl md:text-5xl font-serif font-bold text-charcoal mb-2">
+            10+
+          </p>
+          <p class="text-sm text-cement tracking-wide">Tahun Pengalaman</p>
+        </div>
+        <div class="fade-up fade-delay-3">
+          <p class="text-4xl md:text-5xl font-serif font-bold text-charcoal mb-2">
+            50K+
+          </p>
+          <p class="text-sm text-cement tracking-wide">Unit Terjual</p>
+        </div>
+        <div class="fade-up fade-delay-4">
+          <p class="text-4xl md:text-5xl font-serif font-bold text-charcoal mb-2">
+            200+
+          </p>
+          <p class="text-sm text-cement tracking-wide">Proyek Terpasang</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       CTA BANNER
+       ════════════════════════════════════════════════════════════════════ -->
+  <section class="py-20 md:py-28 bg-charcoal">
+    <div class="max-w-3xl mx-auto px-6 lg:px-10 text-center">
+      <h2
+        class="fade-up text-3xl md:text-4xl font-serif font-bold text-bone mb-5 leading-tight"
+      >
+        Siap Mewujudkan<br />Fasad Impian Anda?
+      </h2>
+      <p class="fade-up fade-delay-1 text-bone/60 mb-10 leading-relaxed">
+        Konsultasikan kebutuhan roster Anda dengan tim kami.
+        Kami siap membantu dari pemilihan pola hingga kalkulasi kebutuhan
+        material.
+      </p>
+      <a
+        href={waLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="fade-up fade-delay-2 inline-flex items-center gap-3 bg-emerald-cta text-white px-10 py-4 rounded-full text-sm font-semibold tracking-wide cta-pulse hover:bg-emerald-cta/90 transition-colors duration-300"
+      >
+        <svg
+          class="w-5 h-5 fill-current"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+          ></path>
+        </svg>
+        Hubungi Kami Sekarang
+      </a>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       FOOTER — Monokrom Minimalis
+       ════════════════════════════════════════════════════════════════════ -->
+  <footer id="kontak" class="bg-dark text-bone/50 py-16">
+    <div
+      class="max-w-7xl mx-auto px-6 lg:px-10 grid grid-cols-1 md:grid-cols-3 gap-12"
+    >
+      <!-- Brand -->
+      <div>
+        <p class="text-xl font-serif font-bold text-bone tracking-widest mb-3">
+          ROSTER<span class="text-cement">PRIMA</span>
+        </p>
+        <p class="text-sm leading-relaxed">
+          Estetika & Fungsi<br />dalam Setiap Detail.
+        </p>
+      </div>
+
+      <!-- Navigasi -->
+      <div>
+        <p class="text-xs tracking-[0.2em] uppercase text-bone/30 mb-4">
+          Navigasi
+        </p>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a href="#beranda" class="hover:text-bone transition-colors duration-300">Beranda</a>
+          </li>
+          <li>
+            <a href="#produk" class="hover:text-bone transition-colors duration-300">Produk</a>
+          </li>
+          <li>
+            <a href="#tentang" class="hover:text-bone transition-colors duration-300">Tentang Kami</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Kontak -->
+      <div>
+        <p class="text-xs tracking-[0.2em] uppercase text-bone/30 mb-4">
+          Kontak
+        </p>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-bone transition-colors duration-300"
+            >
+              WhatsApp: +62 8XX-XXXX-XXXX
+            </a>
+          </li>
+          <li>
+            <a
+              href="mailto:info@rosterprima.id"
+              class="hover:text-bone transition-colors duration-300"
+            >
+              info@rosterprima.id
+            </a>
+          </li>
+          <li class="text-bone/30">
+            Jl. Industri No. 28, Bandung
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div
+      class="max-w-7xl mx-auto px-6 lg:px-10 mt-14 pt-8 border-t border-bone/10 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-bone/25"
+    >
+      <p>&copy; 2026 Roster Prima. Seluruh hak cipta dilindungi.</p>
+      <p>Dibuat dengan dedikasi di Indonesia.</p>
+    </div>
+  </footer>
+</Layout>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     VANILLA JS — Animasi & Interaksi
+     ══════════════════════════════════════════════════════════════════════ -->
+<script>
+  /* ── Fade-up Reveal via Intersection Observer ────────────────────────── */
+  const fadeObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
+  );
+
+  document.querySelectorAll('.fade-up').forEach((el) => fadeObserver.observe(el));
+
+  /* ── Navbar Scroll Effect ────────────────────────────────────────────── */
+  const navbar = document.getElementById('navbar');
+
+  const onScroll = () => {
+    if (!navbar) return;
+    if (window.scrollY > 60) {
+      navbar.classList.add('nav-scrolled');
+    } else {
+      navbar.classList.remove('nav-scrolled');
+    }
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ── Mobile Menu Toggle ──────────────────────────────────────────────── */
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const bar1 = document.getElementById('bar1');
+  const bar2 = document.getElementById('bar2');
+  const bar3 = document.getElementById('bar3');
+  let menuOpen = false;
+
+  menuBtn?.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileMenu?.classList.toggle('open', menuOpen);
+
+    if (menuOpen) {
+      bar1!.style.transform = 'rotate(45deg) translate(4px, 4px)';
+      bar2!.style.opacity = '0';
+      bar3!.style.transform = 'rotate(-45deg) translate(4px, -4px)';
+    } else {
+      bar1!.style.transform = '';
+      bar2!.style.opacity = '1';
+      bar3!.style.transform = '';
+    }
+  });
+
+  // Tutup menu saat klik link
+  mobileMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      menuOpen = false;
+      mobileMenu.classList.remove('open');
+      bar1!.style.transform = '';
+      bar2!.style.opacity = '1';
+      bar3!.style.transform = '';
+    });
+  });
+
+  /* ── Dig Down Parallax (Product Grid) ────────────────────────────────── */
+  let ticking = false;
+
+  const updateParallax = () => {
+    const parallaxImages = document.querySelectorAll<HTMLElement>('.parallax-img');
+    const windowHeight = window.innerHeight;
+
+    parallaxImages.forEach((img) => {
+      const wrap = img.closest('.parallax-wrap');
+      if (!wrap) return;
+
+      const rect = wrap.getBoundingClientRect();
+
+      // Hanya proses jika di viewport
+      if (rect.bottom < 0 || rect.top > windowHeight) return;
+
+      const speed = 0.12;
+      const centerOffset = rect.top - windowHeight / 2;
+      const yPos = -(centerOffset * speed);
+
+      img.style.transform = `translateY(${yPos}px) scale(1.1)`;
+    });
+
+    ticking = false;
+  };
+
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (!ticking) {
+        requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    },
+    { passive: true },
+  );
+
+  // Posisi parallax awal
+  updateParallax();
+</script>
